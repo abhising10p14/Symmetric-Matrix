@@ -101,9 +101,9 @@ public:
 	Operator overloading for accesing the SymMat by just object name , i.e cout<<obj;
 ****************************************************************************************/
     
-	friend ostream & operator <<( ostream& os, const SymMat<_Scalar>& m){
+	friend ostream & operator <<( ostream& os, const SymMat & m){
 		m.Print_Matrix();
-		return os << 0;
+		return os ;
 	}
 
 
@@ -287,13 +287,13 @@ int main()
   SymMat<double> s2(m2,4);
   s.Print_Matrix();
   //s2.Print_Matrix();
-  //cout<<s(1,2)<<endl;				//To access the s(i,j) simillr to the accessor of Eigen::Matrix 
+  //cout<<s(1,2)<<endl;				//To access the s(i,j) simillar to the accessor of Eigen::Matrix 
 
   SymMat<double> s3  = s + s2;		//Addition of Two SymMat
   //s3.Print_Matrix();
   MatrixXd m3(4,4);
   m3  = s + m;
-  cout<<"s is:"<<endl<<s<<endl<<endl;
+  //cout<<"s is:"<<endl<<s<<endl<<endl;
   cout<<"m is:"<<endl<<m<<endl;
   cout<<"s+m = m3 is : "<<endl<<m3<<endl;
   //cout<<typeid(m(0,0)).name();
