@@ -1,6 +1,6 @@
 Symmetric-Matrix
 --------------------------------------------------------------------------------------------------------------
-This repository deals with the problem of increased space complexity of Symmetric Matrix while using Eigen
+This repository deals with the problem of reducing  space complexity of Symmetric Matrix using Eigen
 (a C++ template library for linear algebra: matrices, vectors, numerical solvers, and related algorithms).
 Both the Upper and Lower Triangular matrices of a Symmetric Matrix are identical. Therefore a huge amount of
 memory can be saved if only one of the upper and lower triangular matrix is stored(upper Triangular matrix 
