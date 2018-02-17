@@ -5,7 +5,6 @@
 #include<iostream>
 #include<vector>
 #include <eigen3/Eigen/Dense>
-#include <iomanip>
 #define  ll long long int 					//Matrx Size could be  very large 
 //#include <Eigen/Dense>
 
@@ -36,11 +35,11 @@ template<typename _Scalar>
 class SymMat
 {
 public:
-	MatrixXd Eigen_Matrix;			//The Eigen Matrix to be converted into Symetric Matrix
-	ll _Rows;						//_Rows = num of rows
-	ll _Cols;						//_Cols = num of columns 
-	vector < _Scalar > symmatrix;	//To store the upper Diagonal only ->reduces  the storage
-									// Storing the Upper Diagonal row wise in the vector :
+	MatrixXd Eigen_Matrix;				//The Eigen Matrix to be converted into Symetric Matrix
+	ll _Rows;							//_Rows = num of rows
+	ll _Cols;							//_Cols = num of columns 
+	vector < _Scalar > symmatrix;		//To store the upper Diagonal only ->reduces  the storage
+										// Storing the Upper Diagonal row wise in the vector :
 
 /************************************************************
 				Constructor 
@@ -64,7 +63,7 @@ public:
 			}
 		catch(ll num) 
 		{
-			cout<<"You cannot enter "<<num<<" as a dimension.";
+			cout<<"Exception: "<<endl<<"You cannot enter "<<num<<" as a dimension.";
 		}
 /**********************************************************/
 		for(ll i=0;i<_Rows;i++)
@@ -75,7 +74,19 @@ public:
 				symmatrix.push_back(M(i,j));			// Store in Row Major Order
 			}//cout<<endl;
 		}
-	}
+	}// Constructor ends here 
+
+/*********************************************************************
+  Implementing the Matrix indexing i.e S(i,j) = S[i][j] i.e Accessor
+**********************************************************************/
+
+	int operator()(ll i,ll j)
+    {
+        if (i <= j)
+      	return symmatrix[(i * _Rows - (i - 1) * i / 2 + j - i)];
+  		 else
+      	return symmatrix[(j * _Rows - (j - 1) * j / 2 + i - j)];
+    }
 
 	void Print_Matrix();
 
@@ -87,49 +98,52 @@ public:
 template<typename _Scalar> 
 void SymMat<_Scalar>::Print_Matrix()
 {
-  //clock_t start;
-  //double duration;
-  //start=clock();
+
   ll i,j,k;
-  cout<<"\nThe given Symmetric Matrix looks like:\n";     
+  cout<<endl<<"The Upper Triangular part of the Given Matrix looks like:"<<endl;
+  //for(i=0;i<symmatrix.size();i++)cout<<symmatrix[i]<<" "; cout<<endl;
+  cout<<"\nThe given Symmetric Matrix looks like:\n"; 
+  ll temp = 0,r_temp = _Rows;    
   for(i=0;i<_Rows;i++)
   {
   	for (j=0;j<_Cols;j++)
   	{  
-  	   if( i>=j )
-  	   {
-		 k=(i*(i+1))/2;
-  		 k=k+j;
-  		 cout<<setw(2)<<symmatrix[k]<<" ";
-       }
-       else
-       {
-		 k=(j*(j+1))/2;
-  		 k=k+i;
-  		 cout<<setw(2)<<symmatrix[k]<<" ";
-       }
+  	  
+  		if (i <= j)
+      	cout<<symmatrix[(i * _Rows - (i - 1) * i / 2 + j - i)]<<" ";
+  		 else
+      	cout<<symmatrix[(j * _Rows - (j - 1) * j / 2 + i - j)]<<" ";
 
   	}
-  	cout<<"\n";
-  }
+  	cout<<endl;
+  }cout<<endl;
 }
 
 int main()
 {
-  MatrixXd m(3,3);
+  MatrixXd m(4,4);
   m(0,0) = 1;
   m(0,1) = 2;
   m(0,2) = 3;
-  m(1,0) = 4;
-  m(1,1) = 5;
-  m(1,2) = 6;
-  m(2,0) = 7;
-  m(2,1) = 8;
-  m(2,2) = 9;
-  
-  SymMat<int> s(m,3);
+  m(0,3) = 4;
+  m(1,0) = 5;
+  m(1,1) = 6;
+  m(1,2) = 7;
+  m(1,3) = 8;
+  m(2,0) = 9;
+  m(2,1) = 10;
+  m(2,2) = 11;
+  m(2,3) = 12;
+  m(3,0) = 13;
+  m(3,1) = 14;
+  m(3,2) = 15;
+  m(3,3) = 16;
+  SymMat<int> s(m,4);
   s.Print_Matrix();
-  std::cout << m << std::endl;
+  //cout<<s(1,2)<<endl;				//To access the s(i,j) simillr to the accessor of Eigen::Matrix 
+  cout << m << std::endl;
+  //cout<m.triangularView<Eigen::Upper>()<<endl;
+  
 }
 
 /*1 2 3 4 
