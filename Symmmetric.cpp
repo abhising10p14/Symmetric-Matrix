@@ -349,6 +349,127 @@ MatrixXd operator -(SymMat<_Scalar> const &ob1,Eigen::MatrixXd &m)
 
 
 
+/***************************************************************************
+	Product btw two Matrix
+****************************************************************************/
+//1. Product btw SymMat and SymMat
+template<typename _Scalar>
+MatrixXd operator *(SymMat<_Scalar> const &ob1,SymMat<_Scalar> const &ob2)
+{
+	//Throw Exception if size of both the SymMat are not same 
+	try {
+				if(ob1._Rows!=ob2._Rows) 
+				{
+					throw ob1._Rows;
+				}
+
+		}
+		catch(ll num) 
+		{
+			cout<<"Exception: "<<endl<<"The given SymMats for addition don't have same dimension"<<endl;
+			exit(0);
+			
+		}
+	ll length = ob1._Rows;
+	MatrixXd result(length,length);
+    for (ll i = 0; i < length; i++)
+    {
+        for (ll j = 0; j < length; j++)
+        {
+            result(i,j) = 0;
+            for (ll k = 0; k < length; k++)
+            {
+            	_Scalar temp1,temp2  ;
+				if (i <= k)
+		      	temp1 = ob1.symmatrix[(i * length - (i - 1) * i / 2 + j - i)];
+		  		if(i>k)
+		      	temp1 = ob1.symmatrix[(j * length - (j - 1) * j / 2 + i - j)];
+
+		      	if (k <= j)
+		      	temp2 = ob1.symmatrix[(i * length - (i - 1) * i / 2 + j - i)];
+		  		if(k>j)
+		      	temp2 = ob1.symmatrix[(j * length - (j - 1) * j / 2 + i - j)];
+
+                result(i,j) += temp1*temp2;
+            }
+        }
+    }
+    return result;
+} // This function ends here 
+
+//2. Product btw SymMat and Eigen::Matrix
+template<typename _Scalar>
+MatrixXd operator *(SymMat<_Scalar> const &ob1,Eigen::MatrixXd &m)
+{
+
+	//Throw Exception if size of SymMat and Eigen::Matrix are not same 
+	try {
+				if(ob1._Rows!=m.rows() || ob1._Rows!=m.cols() || m.cols()!=m.rows()) 
+				{
+					throw ob1._Rows;
+				}
+
+		}
+		catch(ll num) 
+		{
+			cout<<"Exception: "<<endl<<"The given SymMat and Eigen:: Matrix for addition don't have same dimension"<<endl;
+			exit(0);
+			
+		}
+
+	//Throw Exception if size of anyone of  the SymMat or Eigen::Matrix is zero
+	try {
+				if(ob1._Rows==0 || m.rows()==0 || m.cols()==0) 
+				{
+					throw ob1._Rows;
+				}
+
+		}
+		catch(ll num) 
+		{
+			cout<<"Exception: "<<endl<<"Zero sized Matrix found for Addition"<<endl;
+			exit(0);
+			
+		}
+
+	//Throw Exception if data type of both the SymMat are not same 
+	try {
+				if(typeid(m(0,0)).name() != typeid(ob1.symmatrix[0]).name()) 
+				{
+					throw ob1._Rows;
+				}
+
+		}
+		catch(ll num) 
+		{
+			cout<<"Exception: "<<endl<<"Two Matrix of different data types"<<endl;
+			exit(0);
+			
+		}
+
+	ll length = ob1._Rows;
+	MatrixXd result = m;
+	for (ll i = 0; i < length; i++)
+    {
+        for (ll j = 0; j < length; j++)
+        {
+            result(i,j) = 0;
+            for (ll k = 0; k < length; k++)
+            {
+            	_Scalar temp  ;
+				if (i <= k)
+		      	temp = ob1.symmatrix[(i * length - (i - 1) * i / 2 + j - i)];
+		  		if(i>k)
+		      	temp = ob1.symmatrix[(j * length - (j - 1) * j / 2 + i - j)];
+
+                result(i,j) += temp*m(k,j);
+            }
+        }
+    }
+	return result;
+}// This function ends here 
+
+
 int main()
 {
   MatrixXd m(4,4);
@@ -388,27 +509,42 @@ int main()
   m2(3,3) = 16;
   SymMat<double> s(m,4);
   SymMat<double> s2(m2,4);
+
+  cout<<m<<endl<<endl;
+  cout<<"s matrix is: "<<endl;
   s.Print_Matrix();
   //s2.Print_Matrix();
-  //cout<<s(1,2)<<endl;				//To access the s(i,j) simillar to the accessor of Eigen::Matrix 
+  //cout<<s(1,2)<<endl;								//To access the s(i,j) simillar to the accessor of Eigen::Matrix 
 
-  SymMat<double> s3  = s + s2;		//Addition of Two SymMat
+  SymMat<double> s3  = s + s2;						//Addition of Two SymMat
   //s3.Print_Matrix();
   MatrixXd m3(4,4);
-  m3  = s + m;						//Addition of SymMat and Eigen::Matrix
+  m3  = s + m;										//Addition of SymMat and Eigen::Matrix
   //cout<<"s is:"<<endl<<s<<endl<<endl;         	//NEEDS TO BE FIXED
   cout<<"m is:"<<endl<<m<<endl<<endl;
   cout<<"s+m = m3 is : "<<endl<<m3<<endl<<endl;
   //cout<<typeid(m(0,0)).name();
   //cout<<typeid(s3.symmatrix[0]).name();
 
-  SymMat<double> s4  = s3 - s2;		//Difference of Two SymMat
+  SymMat<double> s4  = s3 - s2;						//Difference of Two SymMat
   //s3.Print_Matrix();
+
   s3.Print_Matrix();
   MatrixXd m4(4,4);
-  m4  = s - m;						//Difference of SymMat and Eigen::Matrix
+  m4  = s - m;										//Difference of SymMat and Eigen::Matrix
   cout<<"m is:"<<endl<<m<<endl<<endl;
   cout<<"s-m = m4 is : "<<endl<<m4<<endl<<endl;
+
+  /********************************************************
+  Testng for the Multiliction
+  *********************************************************/
+  MatrixXd m5 = s3*m;				//SymMat * Eigen::Matrix
+  cout<<"m5 = s3*m :"<<"\n"<<m5<<endl<<endl;				
+
+   MatrixXd m6 = s3*s;				//SymMat * Eigen::Matrix
+   cout<<"m6 = s3*s :"<<"\n"<<m6<<endl<<endl;				
+
+
   
 }
 
