@@ -17,10 +17,7 @@
  **********************************************************/
 
 
-// Raise the error if the input size is <=0
-//First Take a square Matrix as input , now you have to store 
-//the uppper diaogonal of this matrix into
-// Sym 
+
 
 
 using namespace std;
@@ -44,6 +41,13 @@ public:
 /************************************************************
 				Constructor 
 *************************************************************/
+
+	SymMat()
+	{
+
+		_Rows =_Cols = 0;
+	}
+
 	SymMat(MatrixXd M,ll _Dimension)
 	{
 		_Rows = _Dimension;
@@ -63,7 +67,8 @@ public:
 			}
 		catch(ll num) 
 		{
-			cout<<"Exception: "<<endl<<"You cannot enter "<<num<<" as a dimension.";
+			cout<<"Exception: "<<endl<<"You cannot enter "<<num<<" as a dimension."<<endl;
+			exit(0);
 		}
 /**********************************************************/
 		for(ll i=0;i<_Rows;i++)
@@ -99,14 +104,11 @@ template<typename _Scalar>
 void SymMat<_Scalar>::Print_Matrix()
 {
 
-  ll i,j,k;
-  cout<<endl<<"The Upper Triangular part of the Given Matrix looks like:"<<endl;
-  //for(i=0;i<symmatrix.size();i++)cout<<symmatrix[i]<<" "; cout<<endl;
   cout<<"\nThe given Symmetric Matrix looks like:\n"; 
-  ll temp = 0,r_temp = _Rows;    
-  for(i=0;i<_Rows;i++)
+    
+  for(ll i=0;i<_Rows;i++)
   {
-  	for (j=0;j<_Cols;j++)
+  	for (ll j=0;j<_Cols;j++)
   	{  
   	  
   		if (i <= j)
@@ -117,7 +119,72 @@ void SymMat<_Scalar>::Print_Matrix()
   	}
   	cout<<endl;
   }cout<<endl;
+
+}	//Print_Matrix Function ends here 
+
+/***************************************************************************************
+	Uisng Function Overloading for Addition :
+	SymMat + SymMat
+	SymMat + Eigen::Matrix
+
+****************************************************************************************/
+// Addition of SymMat + SymMat
+template<typename _Scalar>
+SymMat<_Scalar> operator +(SymMat<_Scalar> const &ob1,SymMat<_Scalar> const &ob2)
+{
+	//Throw Exception if size of both the SymMat are not same 
+	try {
+				if(ob1._Rows!=ob2._Rows) 
+				{
+					throw ob1._Rows;
+				}
+
+		}
+		catch(ll num) 
+		{
+			cout<<"Exception: "<<endl<<"The given SymMats for addition don't have same dimension"<<endl;
+			exit(0);
+			
+		}
+	ll length = ob1._Rows;
+	SymMat<_Scalar> result = ob1;
+	for(ll i =0;i<length*(length+1)/2;i++)
+	{
+		result.symmatrix[i] = (ob1.symmatrix[i] + ob1.symmatrix[i]);
+		//cout<<result.symmatrix[i]<<" ";
+	}//cout<<endl;
+	return result;
 }
+
+// Addition of SymMat + Eigen::Matrix
+template<typename _Scalar>
+SymMat<_Scalar> operator +(SymMat<_Scalar> const &ob1,Eigen::Matrix<_Scalar>)
+{
+	//Throw Exception if size of both the SymMat are not same 
+	try {
+				if(ob1._Rows!=ob2._Rows) 
+				{
+					throw ob1._Rows;
+				}
+
+		}
+		catch(ll num) 
+		{
+			cout<<"Exception: "<<endl<<"The given SymMats for addition don't have same dimension"<<endl;
+			exit(0);
+			
+		}
+	ll length = ob1._Rows;
+	SymMat<_Scalar> result = ob1;
+	for(ll i =0;i<length*(length+1)/2;i++)
+	{
+		result.symmatrix[i] = (ob1.symmatrix[i] + ob1.symmatrix[i]);
+		//cout<<result.symmatrix[i]<<" ";
+	}//cout<<endl;
+	return result;
+}
+
+
 
 int main()
 {
@@ -138,11 +205,33 @@ int main()
   m(3,1) = 14;
   m(3,2) = 15;
   m(3,3) = 16;
-  SymMat<int> s(m,4);
+
+  MatrixXd m2(4,4);
+  m2(0,0) = 1;
+  m2(0,1) = 2;
+  m2(0,2) = 3;
+  m2(0,3) = 4;
+  m2(1,0) = 5;
+  m2(1,1) = 6;
+  m2(1,2) = 7;
+  m2(1,3) = 8;
+  m2(2,0) = 9;
+  m2(2,1) = 10;
+  m2(2,2) = 11;
+  m2(2,3) = 12;
+  m2(3,0) = 13;
+  m2(3,1) = 14;
+  m2(3,2) = 15;
+  m2(3,3) = 16;
+  SymMat<double> s(m,4);
+  SymMat<double> s2(m2,4);
   s.Print_Matrix();
+  s2.Print_Matrix();
   //cout<<s(1,2)<<endl;				//To access the s(i,j) simillr to the accessor of Eigen::Matrix 
-  cout << m << std::endl;
+  //cout << m << std::endl;
   //cout<m.triangularView<Eigen::Upper>()<<endl;
+  SymMat<double> s3  = s + s2;
+  s3.Print_Matrix();
   
 }
 
