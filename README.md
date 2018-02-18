@@ -27,7 +27,7 @@ The class consists of the following function:
    (i)  SymMat∗SymMat
    (ii) SymMat∗Eigen::Matrix
 
-3.199999999999999936e-11
+
 
 This repository consists of the following files:
 -----------------------------------------------------------------------------------------------------------------
