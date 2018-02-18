@@ -1,12 +1,10 @@
 /*****************************
 	Assumption:   The input given by the user is a Eigen Matrix
 ******************************/
-
+#include"Symmetric.h"
 #include<iostream>
-#include<vector>
-#include<typeinfo>
-#include <eigen3/Eigen/Dense>
-#define  ll long long int 					//Matrx Size could be  very large 
+
+					
 //#include <Eigen/Dense>
 
 /*********************************************************
@@ -17,39 +15,22 @@
 	#include <Eigen/Dense> 
  **********************************************************/
 
-
-
-
-
 using namespace std;
 using namespace Eigen;
-
-
-//Using a simillar class as that of Matrix class of Eigen:
-//..............................................................................................
-// template<typename _Scalar, int _Rows, int _Cols, int _Options, int _MaxRows, int _MaxCols>
-//..............................................................................................
-template<typename _Scalar>  
-class SymMat
-{
-public:
-	MatrixXd Eigen_Matrix;				//The Eigen Matrix to be converted into Symetric Matrix
-	ll _Rows;							//_Rows = num of rows
-	ll _Cols;							//_Cols = num of columns 
-	vector < _Scalar > symmatrix;		//To store the upper Diagonal only ->reduces  the storage
-										// Storing the Upper Diagonal row wise in the vector :
 
 /************************************************************
 				Constructor 
 *************************************************************/
 
-	SymMat()
-	{
+template<typename _Scalar> 
+SymMat<_Scalar>::SymMat()
+{
 
 		_Rows =_Cols = 0;
-	}
+}
 
-	SymMat(MatrixXd M,ll _Dimension)
+template<typename _Scalar> 
+SymMat<_Scalar>::SymMat(MatrixXd M,ll _Dimension)
 	{
 		_Rows = _Dimension;
 		_Cols = _Dimension;
@@ -70,8 +51,8 @@ public:
 		{
 			cout<<"Exception: "<<endl<<"You cannot enter "<<num<<" as a dimension."<<endl;
 			exit(0);
-		}
-/**********************************************************/
+		}//Exception Handling ends here 
+
 		for(ll i=0;i<_Rows;i++)
 		{
 			for(ll j =i;j<_Cols;j++)
@@ -85,32 +66,14 @@ public:
 /*********************************************************************
   Implementing the Matrix indexing i.e S(i,j) = S[i][j] i.e Accessor
 **********************************************************************/
-
-	_Scalar  operator()(ll i,ll j)
-    {
-        if (i <= j)
-      	return symmatrix[(i * _Rows - (i - 1) * i / 2 + j - i)];
-  		 else
-      	return symmatrix[(j * _Rows - (j - 1) * j / 2 + i - j)];
-    }
-
-
-    void Print_Matrix();
-
-/***************************************************************************************
-	Operator overloading for accesing the SymMat by just object name , i.e cout<<obj;
-****************************************************************************************/
-    
-	friend ostream & operator <<( ostream& os, const SymMat & m){
-		m.Print_Matrix();
-		return os ;
-	}
-
-
-	
-
-
-};
+template<typename _Scalar> 
+_Scalar  SymMat<_Scalar>::operator()(ll i,ll j)
+{
+    if (i <= j)
+    return symmatrix[(i * _Rows - (i - 1) * i / 2 + j - i)];
+  	else
+    return symmatrix[(j * _Rows - (j - 1) * j / 2 + i - j)];
+}
 
 
 template<typename _Scalar> 
