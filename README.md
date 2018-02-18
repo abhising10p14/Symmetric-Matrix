@@ -1,4 +1,4 @@
-#Symmetric-Matrix
+Symmetric-Matrix
 --------------------------------------------------------------------------------------------------------------
 This repository deals with the problem of reducing  space complexity of Symmetric Matrix using Eigen
 (a C++ template library for linear algebra: matrices, vectors, numerical solvers, and related algorithms).
@@ -11,7 +11,7 @@ in it. As a single double value is of 8 bytes, total amount of memory used if we
 So, It can be seen that around 3.2 × 10^27 Tb of memory will be saved if we  save the space by just storing the upper or lower triangular part of a Symmetric Matrix and could perform all the basic Matrix arithmetic easily.
 
 
-##How it is being implemented?
+How it is being implemented?
 ----------------------------------------------------------------------------------------------------------------
 A standalone C++ class for a symetric matrix(SymMat in this case) has been created. It is simmilar to 
 the Eigen::Matrix class of Eigen library.
@@ -20,16 +20,16 @@ The class consists of the following function:
 2. Accessors for S(i,j): S(j,i) should of course return the same as S(i,j). where S is a Symmetric matrix.
 3. Functions for matrix addition:
 
-   ..1.  SymMat +/- SymMat
-   ..2. SymMat +/- Eigen::Matrix
+   (i)  SymMat +/- SymMat
+   (ii) SymMat +/- Eigen::Matrix
 4. Functions for matrix multiplication:
 
-   ..1.  SymMat∗SymMat
-   ..2. SymMat∗Eigen::Matrix
+   (i)  SymMat∗SymMat
+   (ii) SymMat∗Eigen::Matrix
 
 3.199999999999999936e-11
 
-##This repository consists of the following files:
+This repository consists of the following files:
 -----------------------------------------------------------------------------------------------------------------
 1. A C++ header file Symmetric.h
    The Header file consits of a SymMat class whose members have been described in the comments in the file itself.
