@@ -28,7 +28,8 @@ The class consists of the following function:
    (ii) SymMat∗Eigen::Matrix
 
 
-**IT HAS BEEN ASSUMED THAT THE USER PROVIDES A EIGEN::MATRIX FROM WHICH A SYMMETRIC MATRIX HAS TO BE EXTACTED AND STORED.**
+*IT HAS BEEN ASSUMED THAT THE USER PROVIDES A EIGEN::MATRIX FROM WHICH A SYMMETRIC MATRIX HAS TO BE EXTACTED AND STORED.*
+
 This repository consists of the following files:
 -----------------------------------------------------------------------------------------------------------------
 1. A C++ header file Symmetric.h
