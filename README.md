@@ -19,11 +19,12 @@ The class consists of the following function:
 1. A constructor to make a SymMat from an Eigen::Matrix
 2. Accessors for S(i,j): S(j,i) should of course return the same as S(i,j). where S is a Symmetric matrix.
 3. Functions for matrix addition:
-   SymMat +/- SymMat
-   SymMat +/- Eigen::Matrix
+   i)  SymMat +/- SymMat
+   ii) SymMat +/- Eigen::Matrix
 4. Functions for matrix multiplication:
-   SymMat∗SymMat
-   SymMat∗Eigen::Matrix
+   i)  SymMat∗SymMat
+   ii) SymMat∗Eigen::Matrix
+
 
 This repository consists of the following files:
 --------------------------------------------------------------------------------------------------------------
