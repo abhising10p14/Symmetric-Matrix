@@ -33,8 +33,12 @@ The class consists of the following function:
 This repository consists of the following files:
 -----------------------------------------------------------------------------------------------------------------
 1. A C++ header file Symmetric.h
-   The Header file consits of a SymMat class whose members have been described in the comments in the file itself.
+   The Header file consist of a SymMat class whose members have been described in the comments in the file itself.
+   The SymMat class consist of the following memebers :
+   1. Eigen::MatrixXd Eigen_Matrix					-> The Eigen Matrix which is to be converted into Symetric Matrix
+   2. ll _Rows									    -> The Number of Rows
+   3. ll _Cols										-> The Number of Columns which is same as number of rows
+   4. std::vector < _Scalar > symmatrix				-> To store the upper Diagonal only ->reduces  the storage
 
-   
 
 
