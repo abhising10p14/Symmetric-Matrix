@@ -4,22 +4,12 @@
 #include"Symmetric.h"
 #include<iostream>
 
-					
-//#include <Eigen/Dense>
-
-/*********************************************************
-	If error while compiling, comment the line :
-	#include <eigen3/Eigen/Dense>  
-
-	and	remove the comment from:
-	#include <Eigen/Dense> 
- **********************************************************/
 
 using namespace std;
 using namespace Eigen;
 
 /************************************************************
-				Constructor 
+				Constructor definition
 *************************************************************/
 
 template<typename _Scalar> 
@@ -58,13 +48,15 @@ SymMat<_Scalar>::SymMat(MatrixXd M,ll _Dimension)
 			for(ll j =i;j<_Cols;j++)
 			{
 				//cout<<M(i,j)<<" ";
-				symmatrix.push_back(M(i,j));			// Store in Row Major Order
+				symmatrix.push_back(M(i,j));								// Store in Row Major Order
 			}//cout<<endl;
 		}
 	}// Constructor ends here 
 
+
 /*********************************************************************
   Implementing the Matrix indexing i.e S(i,j) = S[i][j] i.e Accessor
+  using operatpr () overloading 
 **********************************************************************/
 template<typename _Scalar> 
 _Scalar  SymMat<_Scalar>::operator()(ll i,ll j)
@@ -104,11 +96,12 @@ void SymMat<_Scalar>::Print_Matrix()
 
 
 /***************************************************************************************
-	Uisng Function Overloading for Addition :
+	Uisng Operator/Function Overloading for Addition :
 	SymMat + SymMat
 	SymMat + Eigen::Matrix
 
 ****************************************************************************************/
+
 // Addition of SymMat + SymMat
 template<typename _Scalar>
 SymMat<_Scalar> operator +(SymMat<_Scalar> const &ob1,SymMat<_Scalar> const &ob2)
@@ -132,8 +125,8 @@ SymMat<_Scalar> operator +(SymMat<_Scalar> const &ob1,SymMat<_Scalar> const &ob2
 	for(ll i =0;i<length*(length+1)/2;i++)
 	{
 		result.symmatrix[i] = (ob1.symmatrix[i] + ob1.symmatrix[i]);
-		//cout<<result.symmatrix[i]<<" ";
-	}//cout<<endl;
+		
+	}
 	return result;
 }
 
@@ -203,7 +196,7 @@ MatrixXd operator +(SymMat<_Scalar> const &ob1,Eigen::MatrixXd &m)
 		}
 		
 		
-	}//cout<<endl;
+	}
 	return result;
 }
 
@@ -211,6 +204,7 @@ MatrixXd operator +(SymMat<_Scalar> const &ob1,Eigen::MatrixXd &m)
 /*************************************************
 Subtraction of Two Matrix
 *************************************************/
+
 //1. Difference btw SymMat and SymMat
 template<typename _Scalar>
 SymMat<_Scalar> operator -(SymMat<_Scalar> const &ob1,SymMat<_Scalar> const &ob2)
@@ -234,8 +228,8 @@ SymMat<_Scalar> operator -(SymMat<_Scalar> const &ob1,SymMat<_Scalar> const &ob2
 	for(ll i =0;i<length*(length+1)/2;i++)
 	{
 		result.symmatrix[i] = (ob1.symmatrix[i] - ob1.symmatrix[i]);
-		//cout<<result.symmatrix[i]<<" ";
-	}//cout<<endl;
+		
+	}
 	return result;
 }// This function ends here 
 
@@ -306,7 +300,7 @@ MatrixXd operator -(SymMat<_Scalar> const &ob1,Eigen::MatrixXd &m)
 		}
 		
 		
-	}//cout<<endl;
+	}
 	return result;
 }// This function ends here 
 
@@ -315,6 +309,7 @@ MatrixXd operator -(SymMat<_Scalar> const &ob1,Eigen::MatrixXd &m)
 /***************************************************************************
 	Product btw two Matrix
 ****************************************************************************/
+
 //1. Product btw SymMat and SymMat
 template<typename _Scalar>
 MatrixXd operator *(SymMat<_Scalar> const &ob1,SymMat<_Scalar> const &ob2)
@@ -477,34 +472,37 @@ int main()
   cout<<"s matrix is: "<<endl;
   s.Print_Matrix();
   //s2.Print_Matrix();
-  //cout<<s(1,2)<<endl;								//To access the s(i,j) simillar to the accessor of Eigen::Matrix 
+  //cout<<s(1,2)<<endl;											//To access the s(i,j) simillar to the accessor of Eigen::Matrix 
 
-  SymMat<double> s3  = s + s2;						//Addition of Two SymMat
+  SymMat<double> s3  = s + s2;									//Addition of Two SymMat
   //s3.Print_Matrix();
   MatrixXd m3(4,4);
-  m3  = s + m;										//Addition of SymMat and Eigen::Matrix
-  //cout<<"s is:"<<endl<<s<<endl<<endl;         	//NEEDS TO BE FIXED
+  m3  = s + m;													//Addition of SymMat and Eigen::Matrix
+  //cout<<"s is:"<<endl<<s<<endl<<endl;         				//NEEDS TO BE FIXED
   cout<<"m is:"<<endl<<m<<endl<<endl;
   cout<<"s+m = m3 is : "<<endl<<m3<<endl<<endl;
   //cout<<typeid(m(0,0)).name();
   //cout<<typeid(s3.symmatrix[0]).name();
 
-  SymMat<double> s4  = s3 - s2;						//Difference of Two SymMat
+  SymMat<double> s4  = s3 - s2;									//Difference of Two SymMat
   //s3.Print_Matrix();
 
   s3.Print_Matrix();
   MatrixXd m4(4,4);
-  m4  = s - m;										//Difference of SymMat and Eigen::Matrix
+  m4  = s - m;													//Difference of SymMat and Eigen::Matrix
   cout<<"m is:"<<endl<<m<<endl<<endl;
   cout<<"s-m = m4 is : "<<endl<<m4<<endl<<endl;
 
+
   /********************************************************
-  Testng for the Multiliction
+  Testng for the Multipliction
   *********************************************************/
-  MatrixXd m5 = s3*m;				//SymMat * Eigen::Matrix
+
+
+  MatrixXd m5 = s3*m;											//SymMat * Eigen::Matrix
   cout<<"m5 = s3*m :"<<"\n"<<m5<<endl<<endl;				
 
-   MatrixXd m6 = s3*s;				//SymMat * Eigen::Matrix
+   MatrixXd m6 = s3*s;											//SymMat * Eigen::Matrix
    cout<<"m6 = s3*s :"<<"\n"<<m6<<endl<<endl;				
 
 

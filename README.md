@@ -28,7 +28,7 @@ The class consists of the following function:
    (ii) SymMat∗Eigen::Matrix
 
 
-**IT HAS BEEN ASSUMED THAT THE USER PROVIDES A EIGEN::MATRIX FROM WHICH A SYMMETRIC MATRIX HAS TO BE EXTACTED AND STORED.**
+**It has been assumed that the user provides anEigen::Matrix from which a symmetric has to be extracted and stored.**
 
 This repository consists of the following files:
 -----------------------------------------------------------------------------------------------------------------
