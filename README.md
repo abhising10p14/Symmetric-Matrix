@@ -46,4 +46,20 @@ This repository consists of the following files:
    8. **```void Print_Matrix()```**						 Function to print the array as a Matrix
 
 2. A C++ source file Symmetric.cpp
-	The source file consists of the implementation of all the member function of the class SymMat as well as the operator overloading declared in the class. 
+	The source file consists of the implementation of all the member function of the class SymMat as well as the operator overloading declared in the class.
+
+3. A test_file.cpp 
+	This contains all the required test cases which checks the utility of all the inbuilt functions where both the SymMat and the Eigen::Matrix have been used.
+
+
+
+How to use this class and compile it?
+--------------------------------------------------------------------------------------------------------------------
+
+To use this class you just have to include these two files in your main function.
+
+	#include"Symmetric.cpp"
+
+
+	
+
