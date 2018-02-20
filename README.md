@@ -41,7 +41,7 @@ This repository consists of the following files:
    3. **```_Cols```**									 The Number of Columns which is same as number of rows
    4. **```std::vector  Scalar symmatrix```**			 To store the upper Diagonal only. It reduces  the storage
    5. **```SymMat()```**							     Default Constructor
-   6. **```SymMat(Eigen::MatrixXd M,ll _Dimension)```**  Parameterized Constructors
+   6. **```SymMat(Eigen::MatrixXd M)```**  				 Parameterized Constructors
    7. **```_Scalar  operator()(ll i,ll j)```**			 The S(i,j) operator
    8. **```operator <<(ostream &out, const SymMat<Y> & m)```**  '<<' Operator overloading for output of the matrix 
    																   Same as the cout<< m ;(where m is a Eigen::Matrix)
@@ -61,8 +61,22 @@ To use this class you just have to include this following in your main program.
    
    #include"Symmetric.cpp"
 
-   To create an object of the SymMat class
-   **SymMat<> s2(m2,4);**
+   To create an object of the SymMat class 
+   SymMat<_Scalar> s2(m);
+   
+   Here, _Scalar can be any datatype supported in the C++
+   	     m is the Eigen::matrix which is  provided by the user and from which Symmetric  matrix has to be extracted.
+   	 e.g 
+   	 	Eigen::MatrixXd m(4,4); 
+   	 	SymMat<double> s(m);
+
+
+**If fatal error: Eigen/Dense: No such file or directory
+	occurs  while compiling, then comment the line:
+	#include <eigen3/Eigen/Dense>  
+	and	remove the comment from:
+	#include <Eigen/Dense> from the file Symmetric.h**
+
 
 
 
