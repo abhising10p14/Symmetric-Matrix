@@ -71,12 +71,14 @@ To use this class you just have to include this following in your main program.
    	 	SymMat<double> s(m);
 
 
-**If 
-	fatal error:Eigen/Dense: No such file or directory
+ 
+**If fatal error:Eigen/Dense: No such file or directory
 	occurs  while compiling, then comment the line:
 	#include <eigen3/Eigen/Dense>  
 	and	remove the comment from:
 	#include <Eigen/Dense> from the file Symmetric.h**
+
+**Currently It is being assumed that the input Eigen::Matrix is of type ```double```, if Eigen::Matrix is of any other data type, Corresponding changes should be made to the header as well as the source file**
 
 
 

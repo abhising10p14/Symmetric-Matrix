@@ -3,8 +3,6 @@
 ******************************/
 #include"Symmetric.h"
 #include<iostream>
-
-
 using namespace std;
 using namespace Eigen;
 

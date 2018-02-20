@@ -8,8 +8,7 @@ int main()
 // Can be stored in this formt also:
   m << 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16;
   cout<<"m :"<<endl<<m<<endl<<endl;
-/* 
-  simillar to m =
+/* simillar to m =
                    1  2  3  4
                    5  6  7  8
                    9  10 11 12
@@ -36,7 +35,7 @@ int main()
 // Another Eigen::Matrix
   m2 << -1,-2,-3,-4,-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16;
   cout<<"m2:\n "<<m2<<endl<<endl;
-  SymMat<double> s(m);
+  SymMat<double> s(m);                                  //The data type of both the SymMat must be same
   SymMat<double> s2(m2);
   cout<<"s SymMat matrix is: \n"<<s;                     //prints the SymMat matrix 
   
@@ -69,8 +68,8 @@ int main()
   MatrixXd m5 = s3*m;											               //SymMat * Eigen::Matrix
   cout<<"m5 = s3*m :"<<"\n"<<m5<<endl<<endl;				
 
-  MatrixXd m6 = s3*s;											             //SymMat * Eigen::Matrix
-  cout<<"m6 = s3*s :"<<"\n"<<m6<<endl<<endl;				
+   MatrixXd m6 = s3*s;											             //SymMat * Eigen::Matrix
+   cout<<"m6 = s3*s :"<<"\n"<<m6<<endl<<endl;				
 
 
   
