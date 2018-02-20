@@ -25,7 +25,8 @@ public:
 	ll _Rows;									//_Rows = num of rows
 	ll _Cols;									//_Cols = num of columns 
 	std::vector < _Scalar > symmatrix;			//To store the upper Diagonal only ->reduces  the storage
-												// Storing the Upper Diagonal row wise in the vector :
+
+                                                // Storing the Upper Diagonal row wise in the vector :
 
 /************************************************************
 				Constructor 

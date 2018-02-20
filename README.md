@@ -71,7 +71,8 @@ To use this class you just have to include this following in your main program.
    	 	SymMat<double> s(m);
 
 
-**If fatal error: Eigen/Dense: No such file or directory
+**If 
+	fatal error:Eigen/Dense: No such file or directory
 	occurs  while compiling, then comment the line:
 	#include <eigen3/Eigen/Dense>  
 	and	remove the comment from:
