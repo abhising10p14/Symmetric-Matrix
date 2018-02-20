@@ -58,8 +58,13 @@ How to use this class and compile it?
 --------------------------------------------------------------------------------------------------------------------
 
 To use this class you just have to include this following in your main program.
+   
+   #include"Symmetric.cpp"
 
-	#include"Symmetric.cpp"
+   To create an object of the SymMat class
+   **SymMat<> s2(m2,4);**
+
+
 
 
 	

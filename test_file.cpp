@@ -36,8 +36,8 @@ int main()
 // Another Eigen::Matrix
   m2 << -1,-2,-3,-4,-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16;
   cout<<"m2:\n "<<m2<<endl<<endl;
-  SymMat<double> s(m,4);
-  SymMat<double> s2(m2,4);
+  SymMat<double> s(m);
+  SymMat<double> s2(m2);
   cout<<"s SymMat matrix is: \n"<<s;                     //prints the SymMat matrix 
   
   cout<<"s(1,2): "<<s(1,2)<<endl;											   //To access the s(i,j) simillar to the accessor of Eigen::Matrix 

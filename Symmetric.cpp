@@ -21,8 +21,9 @@ SymMat<_Scalar>::SymMat()
 }
 
 template<typename _Scalar> 
-SymMat<_Scalar>::SymMat(MatrixXd M,ll _Dimension)
+SymMat<_Scalar>::SymMat(MatrixXd M)
 	{
+		long long int _Dimension  = M.rows();
 		_Rows = _Dimension;
 		_Cols = _Dimension;
 		Eigen_Matrix = M;
