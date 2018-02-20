@@ -4,6 +4,7 @@
 #include<vector>
 #include<typeinfo>
 #include <eigen3/Eigen/Dense>
+#include <iostream>
 					
 //#include <Eigen/Dense>
 
@@ -34,15 +35,13 @@ public:
 	SymMat();
 	SymMat(Eigen::MatrixXd M,ll _Dimension);
 	_Scalar  operator()(ll i,ll j);
-    void Print_Matrix();
 
 /***************************************************************************************
 	Operator overloading for accesing the SymMat by just object name , i.e cout<<obj;
 ****************************************************************************************/
-    
-	/*friend ostream & operator <<( ostream& os, const SymMat & m){
-		m.Print_Matrix();
-		return os ;*/
+    template<class Y>
+	friend std::ostream & operator <<( std::ostream& out, const SymMat<Y> & m);
+
 	
 
 };

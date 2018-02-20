@@ -8,11 +8,13 @@ int main()
 // Can be stored in this formt also:
   m << 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16;
   cout<<"m :"<<endl<<m<<endl<<endl;
-/* simillar to m = 1  2  3  4
+/* 
+  simillar to m =
+                   1  2  3  4
                    5  6  7  8
                    9  10 11 12
-                   13 14 15 16 */
-
+                   13 14 15 16 
+*/
 
   MatrixXd m2(4,4);
 /*m2(0,0) = 1;
@@ -33,31 +35,28 @@ int main()
   m2(3,3) = 16;*/
 // Another Eigen::Matrix
   m2 << -1,-2,-3,-4,-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16;
-  cout<<"m2: "<<endl<<m2<<endl<<endl;
+  cout<<"m2:\n "<<m2<<endl<<endl;
   SymMat<double> s(m,4);
   SymMat<double> s2(m2,4);
-  cout<<"s matrix is: "<<endl;
-  s.Print_Matrix();
-  //s2.Print_Matrix();
+  cout<<"s SymMat matrix is: \n"<<s;                     //prints the SymMat matrix 
+  
   cout<<"s(1,2): "<<s(1,2)<<endl;											   //To access the s(i,j) simillar to the accessor of Eigen::Matrix 
-
   SymMat<double> s3  = s + s2;									         //Addition of Two SymMat
-  //s3.Print_Matrix();
+  
   MatrixXd m3(4,4);
   m3  = s + m;													                 //Addition of SymMat and Eigen::Matrix
-  //cout<<"s is:"<<endl<<s<<endl<<endl;         				//NEEDS TO BE FIXED
+  cout<<"s is:"<<endl<<s<<endl<<endl;         				   
   cout<<"s+m = m3 is : "<<endl<<m3<<endl<<endl;
+
   //cout<<typeid(m(0,0)).name();
   //cout<<typeid(s3.symmatrix[0]).name();
 
-  SymMat<double> s4  = s3 - s2;									        //Difference of Two SymMat
-  //s3.Print_Matrix();
-
-  s3.Print_Matrix();
+  SymMat<double> s4  = s3 - s2;									         //Difference of Two SymMat
+  
+  cout<<"The s3 SymMat matrix is:\n "<<s3<<endl;
   MatrixXd m4(4,4);
-  m4  = s - m;			                 										//Difference of SymMat and Eigen::Matrix
-  cout<<"s matrix is: "<<endl;
-  s.Print_Matrix();
+  m4  = s - m;			                 										 //Difference of SymMat and Eigen::Matrix
+  cout<<"s SymMat matrix is: \n"<<s;
   cout<<"m is:"<<endl<<m<<endl<<endl;
   cout<<"s-m = m4 is : "<<endl<<m4<<endl<<endl;
 
@@ -67,11 +66,11 @@ int main()
   *********************************************************/
 
 
-  MatrixXd m5 = s3*m;											              //SymMat * Eigen::Matrix
+  MatrixXd m5 = s3*m;											               //SymMat * Eigen::Matrix
   cout<<"m5 = s3*m :"<<"\n"<<m5<<endl<<endl;				
 
-   MatrixXd m6 = s3*s;											            //SymMat * Eigen::Matrix
-   cout<<"m6 = s3*s :"<<"\n"<<m6<<endl<<endl;				
+  MatrixXd m6 = s3*s;											             //SymMat * Eigen::Matrix
+  cout<<"m6 = s3*s :"<<"\n"<<m6<<endl<<endl;				
 
 
   

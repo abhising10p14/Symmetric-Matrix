@@ -8,6 +8,7 @@
 using namespace std;
 using namespace Eigen;
 
+
 /************************************************************
 				Constructor definition
 *************************************************************/
@@ -67,29 +68,26 @@ _Scalar  SymMat<_Scalar>::operator()(ll i,ll j)
     return symmatrix[(j * _Rows - (j - 1) * j / 2 + i - j)];
 }
 
+/*Using this output stream overloading for printing the matrix*/ 
+template<typename _Scalar>
+inline std::ostream &operator <<( std::ostream &out,  const SymMat<_Scalar> & m){
+		 
+		 for(ll i=0;i<m._Rows;i++)
+		  {
+		  	for (ll j=0;j<m._Cols;j++)
+		  	{  
+		  	  
+		  		if (i <= j)
+		      	 out << m.symmatrix[(i * m._Rows - (i - 1) * i / 2 + j - i)] << " ";
+		  		 else
+		      	 out <<  m.symmatrix[(j * m._Rows - (j - 1) * j / 2 + i - j)] << " ";
 
-template<typename _Scalar> 
-void SymMat<_Scalar>::Print_Matrix()
-{
-
-  cout<<"\nThe given Symmetric Matrix looks like:\n"; 
-    
-  for(ll i=0;i<_Rows;i++)
-  {
-  	for (ll j=0;j<_Cols;j++)
-  	{  
-  	  
-  		if (i <= j)
-      	cout<<symmatrix[(i * _Rows - (i - 1) * i / 2 + j - i)]<<" ";
-  		 else
-      	cout<<symmatrix[(j * _Rows - (j - 1) * j / 2 + i - j)]<<" ";
-
-  	}
-  	cout<<endl;
-  }cout<<endl;
-
-}	//Print_Matrix Function ends here 
-
+		  	}
+		  	cout<<endl;
+		  }cout<<endl;
+		 //out << m.Print_Matrix< _Scalar >() ;
+		 return out;
+	}
 
 
 

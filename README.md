@@ -39,11 +39,12 @@ This repository consists of the following files:
    														 Matrix 
    2. **```_Rows```**								     The Number of Rows
    3. **```_Cols```**									 The Number of Columns which is same as number of rows
-   4. **```std::vector  Scalar symmatrix```**			 To store the upper Diagonal only reduces  the storage
+   4. **```std::vector  Scalar symmatrix```**			 To store the upper Diagonal only. It reduces  the storage
    5. **```SymMat()```**							     Default Constructor
    6. **```SymMat(Eigen::MatrixXd M,ll _Dimension)```**  Parameterized Constructors
    7. **```_Scalar  operator()(ll i,ll j)```**			 The S(i,j) operator
-   8. **```void Print_Matrix()```**						 Function to print the array as a Matrix
+   8. **```operator <<(ostream &out, const SymMat<Y> & m)```**  '<<' Operator overloading for output of the matrix 
+   																   Same as the cout<< m ;(where m is a Eigen::Matrix)
 
 2. A C++ source file Symmetric.cpp
 	The source file consists of the implementation of all the member function of the class SymMat as well as the operator overloading declared in the class.
@@ -56,7 +57,7 @@ This repository consists of the following files:
 How to use this class and compile it?
 --------------------------------------------------------------------------------------------------------------------
 
-To use this class you just have to include these two files in your main function.
+To use this class you just have to include this following in your main program.
 
 	#include"Symmetric.cpp"
 
