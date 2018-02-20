@@ -66,9 +66,10 @@ To use this class you just have to include this following in your main program.
    
    Here, _Scalar can be any datatype supported in the C++
    	     m is the Eigen::matrix which is  provided by the user and from which Symmetric  matrix has to be extracted.
-   	 e.g 
+   	 e.g
+   	  
    	 	Eigen::MatrixXd m(4,4);
-   	 	 
+
    	 	SymMat<double> s(m);
 
 
