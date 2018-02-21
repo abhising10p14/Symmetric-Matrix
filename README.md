@@ -35,15 +35,14 @@ This repository consists of the following files:
 1. A C++ header file Symmetric.h
    The Header file consist of a SymMat class whose members have been described in the comments in the file itself.
    The SymMat class consist of the following memebers :
-   1. **```Eigen::MatrixXd Eigen_Matrix```**			 The Eigen Matrix which is to be converted into Symetric 	
-   														 Matrix 
-   2. **```_Rows```**								     The Number of Rows
-   3. **```_Cols```**									 The Number of Columns which is same as number of rows
-   4. **```std::vector  Scalar symmatrix```**			 To store the upper Diagonal only. It reduces  the storage
-   5. **```SymMat()```**							     Default Constructor
-   6. **```SymMat(Eigen::MatrixXd M)```**  				 Parameterized Constructors
-   7. **```_Scalar  operator()(ll i,ll j)```**			 The S(i,j) operator
-   8. **```operator <<(ostream &out, const SymMat<Y> & m)```**  '<<' Operator overloading for output of the matrix 
+   
+   1. **```_Rows```**								     The Number of Rows
+   2. **```_Cols```**									 The Number of Columns which is same as number of rows
+   3. **```std::vector  Scalar symmatrix```**			 To store the upper Diagonal only. It reduces  the storage
+   4. **```SymMat()```**							     Default Constructor
+   5. **```SymMat(Eigen::MatrixXd M)```**  				 Parameterized Constructors
+   6. **```_Scalar  operator()(ll i,ll j)```**			 The S(i,j) operator
+   7. **```operator <<(ostream &out, const SymMat<Y> & m)```**  '<<' Operator overloading for output of the matrix 
    																   Same as the cout<< m ;(where m is a Eigen::Matrix)
 
 2. A C++ source file Symmetric.cpp

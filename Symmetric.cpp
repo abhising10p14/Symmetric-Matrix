@@ -21,10 +21,10 @@ SymMat<_Scalar>::SymMat()
 template<typename _Scalar> 
 SymMat<_Scalar>::SymMat(MatrixXd M)
 	{
-		long long int _Dimension  = M.rows();		//gets the dimension of the Eigen::Matrix , rows == cols
+		long long int _Dimension  = M.rows();		//gets the dimension of the Eigen::Matrix ,rows == cols
 		_Rows = _Dimension;
 		_Cols = _Dimension;
-		Eigen_Matrix = M;
+		
 
 /***********************************************************
 	 Throwing an Exception if dimension 

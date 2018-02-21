@@ -21,7 +21,7 @@ template<typename _Scalar>
 class SymMat
 {
 public:
-	Eigen::MatrixXd Eigen_Matrix;				//The Eigen Matrix to be converted into Symetric Matrix
+
 	ll _Rows;									//_Rows = num of rows
 	ll _Cols;									//_Cols = num of columns 
 	std::vector < _Scalar > symmatrix;			//To store the upper Diagonal only ->reduces  the storage
