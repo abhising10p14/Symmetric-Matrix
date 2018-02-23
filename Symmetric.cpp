@@ -1,6 +1,8 @@
-/*****************************
-	Assumption:   The input given by the user is a Eigen Matrix
-******************************/
+/*************************************************************
+	The user inputs an  Eigen::Matrix
+	and SymMat class provides a Symmetric Matrix for this 
+	input Matrix
+**************************************************************/
 #include"Symmetric.h"
 #include<iostream>
 using namespace std;
@@ -140,12 +142,12 @@ MatrixXd operator +(SymMat<_Scalar> const &ob1,Eigen::MatrixXd &m)
 				}
 
 		}
-		catch(ll num) 
-		{
-			cout<<"Exception: "<<endl<<"The given SymMat and Eigen:: Matrix for addition don't have same dimension"<<endl;
-			exit(0);
-			
-		}
+	catch(ll num) 
+	{
+		cout<<"Exception: "<<endl<<"The given SymMat and Eigen:: Matrix for addition don't have same dimension"<<endl;
+		exit(0);
+		
+	}
 
 	//Throw Exception if size of anyone of  the SymMat or Eigen::Matrix is zero
 	try {
@@ -155,12 +157,12 @@ MatrixXd operator +(SymMat<_Scalar> const &ob1,Eigen::MatrixXd &m)
 				}
 
 		}
-		catch(ll num) 
-		{
-			cout<<"Exception: "<<endl<<"Zero sized Matrix found for Addition"<<endl;
-			exit(0);
-			
-		}
+	catch(ll num) 
+	{
+		cout<<"Exception: "<<endl<<"Zero sized Matrix found for Addition"<<endl;
+		exit(0);
+		
+	}
 
 	//Throw Exception if data type of both the SymMat are not same 
 	try {
@@ -170,12 +172,12 @@ MatrixXd operator +(SymMat<_Scalar> const &ob1,Eigen::MatrixXd &m)
 				}
 
 		}
-		catch(ll num) 
-		{
-			cout<<"Exception: "<<endl<<"Two Matrix of different data types"<<endl;
-			exit(0);
-			
-		}
+	catch(ll num) 
+	{
+		cout<<"Exception: "<<endl<<"Two Matrix of different data types"<<endl;
+		exit(0);
+		
+	}
 
 	ll length = ob1._Rows;
 	MatrixXd result = m;
@@ -214,12 +216,12 @@ SymMat<_Scalar> operator -(SymMat<_Scalar> const &ob1,SymMat<_Scalar> const &ob2
 				}
 
 		}
-		catch(ll num) 
-		{
-			cout<<"Exception: "<<endl<<"The given SymMats for addition don't have same dimension"<<endl;
-			exit(0);
-			
-		}
+	catch(ll num) 
+	{
+		cout<<"Exception: "<<endl<<"The given SymMats for addition don't have same dimension"<<endl;
+		exit(0);
+		
+	}
 	ll length = ob1._Rows;
 	SymMat<_Scalar> result = ob1;
 	for(ll i =0;i<length*(length+1)/2;i++)
@@ -244,12 +246,12 @@ MatrixXd operator -(SymMat<_Scalar> const &ob1,Eigen::MatrixXd &m)
 				}
 
 		}
-		catch(ll num) 
-		{
-			cout<<"Exception: "<<endl<<"The given SymMat and Eigen:: Matrix for addition don't have same dimension"<<endl;
-			exit(0);
-			
-		}
+	catch(ll num) 
+	{
+		cout<<"Exception: "<<endl<<"The given SymMat and Eigen:: Matrix for addition don't have same dimension"<<endl;
+		exit(0);
+		
+	}
 
 	//Throw Exception if size of anyone of  the SymMat or Eigen::Matrix is zero
 	try {
@@ -259,12 +261,12 @@ MatrixXd operator -(SymMat<_Scalar> const &ob1,Eigen::MatrixXd &m)
 				}
 
 		}
-		catch(ll num) 
-		{
-			cout<<"Exception: "<<endl<<"Zero sized Matrix found for Addition"<<endl;
-			exit(0);
-			
-		}
+	catch(ll num) 
+	{
+		cout<<"Exception: "<<endl<<"Zero sized Matrix found for Addition"<<endl;
+		exit(0);
+		
+	}
 
 	//Throw Exception if data type of both the SymMat are not same 
 	try {
@@ -274,12 +276,12 @@ MatrixXd operator -(SymMat<_Scalar> const &ob1,Eigen::MatrixXd &m)
 				}
 
 		}
-		catch(ll num) 
-		{
-			cout<<"Exception: "<<endl<<"Two Matrix of different data types"<<endl;
-			exit(0);
-			
-		}
+	catch(ll num) 
+	{
+		cout<<"Exception: "<<endl<<"Two Matrix of different data types"<<endl;
+		exit(0);
+		
+	}
 
 	ll length = ob1._Rows;
 	MatrixXd result = m;
@@ -319,12 +321,12 @@ MatrixXd operator *(SymMat<_Scalar> const &ob1,SymMat<_Scalar> const &ob2)
 				}
 
 		}
-		catch(ll num) 
-		{
-			cout<<"Exception: "<<endl<<"The given SymMats for addition don't have same dimension"<<endl;
-			exit(0);
-			
-		}
+	catch(ll num) 
+	{
+		cout<<"Exception: "<<endl<<"The given SymMats for addition don't have same dimension"<<endl;
+		exit(0);
+		
+	}
 	ll length = ob1._Rows;
 	MatrixXd result(length,length);
     for (ll i = 0; i < length; i++)
@@ -365,12 +367,12 @@ MatrixXd operator *(SymMat<_Scalar> const &ob1,Eigen::MatrixXd &m)
 				}
 
 		}
-		catch(ll num) 
-		{
-			cout<<"Exception: "<<endl<<"The given SymMat and Eigen:: Matrix for addition don't have same dimension"<<endl;
-			exit(0);
-			
-		}
+	catch(ll num) 
+	{
+		cout<<"Exception: "<<endl<<"The given SymMat and Eigen:: Matrix for addition don't have same dimension"<<endl;
+		exit(0);
+		
+	}
 
 	//Throw Exception if size of anyone of  the SymMat or Eigen::Matrix is zero
 	try {
@@ -380,12 +382,12 @@ MatrixXd operator *(SymMat<_Scalar> const &ob1,Eigen::MatrixXd &m)
 				}
 
 		}
-		catch(ll num) 
-		{
-			cout<<"Exception: "<<endl<<"Zero sized Matrix found for Addition"<<endl;
-			exit(0);
-			
-		}
+	catch(ll num) 
+	{
+		cout<<"Exception: "<<endl<<"Zero sized Matrix found for Addition"<<endl;
+		exit(0);
+		
+	}
 
 	//Throw Exception if data type of both the SymMat are not same 
 	try {
@@ -395,12 +397,12 @@ MatrixXd operator *(SymMat<_Scalar> const &ob1,Eigen::MatrixXd &m)
 				}
 
 		}
-		catch(ll num) 
-		{
-			cout<<"Exception: "<<endl<<"Two Matrix of different data types"<<endl;
-			exit(0);
-			
-		}
+	catch(ll num) 
+	{
+		cout<<"Exception: "<<endl<<"Two Matrix of different data types"<<endl;
+		exit(0);
+		
+	}
 
 	ll length = ob1._Rows;
 	MatrixXd result = m;
