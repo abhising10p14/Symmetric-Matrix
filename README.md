@@ -35,12 +35,13 @@ This repository consists of the following files:
 1. A C++ header file Symmetric.h
    The Header file consist of a SymMat class whose members have been described in the comments in the file itself.
    The SymMat class consist of the following memebers :
-   
+
    1. **```_Rows```**								     The Number of Rows
    2. **```_Cols```**									 The Number of Columns which is same as number of rows
    3. **```std::vector  Scalar symmatrix```**			 To store the upper Diagonal only. It reduces  the storage
    4. **```SymMat()```**							     Default Constructor
-   5. **```SymMat(Eigen::MatrixXd M)```**  				 Parameterized Constructors
+   5. **```SymMat(Eigen::Matrix<type,r,c>M)```**  		 Parameterized Constructors , type is the data type of
+   														 Eigen::Matrix
    6. **```_Scalar  operator()(ll i,ll j)```**			 The S(i,j) operator
    7. **```operator <<(ostream &out, const SymMat<Y> & m)```**  '<<' Operator overloading for output of the matrix 
    																   Same as the cout<< m ;(where m is a Eigen::Matrix)
@@ -70,7 +71,7 @@ To use this class you just have to include this following in your main program.
    	 	Eigen::MatrixXd m(4,4);
    	 	SymMat<double> s(m);
    	 		
-**Currently It is being assumed that the input Eigen::Matrix is of type ```double```, if Eigen::Matrix is of any other data type, Corresponding changes should be made to the header as well as the source file.**
+**You can pass any type of Eigen::Matrix as argument to the SymMat constructor**
 
 
 

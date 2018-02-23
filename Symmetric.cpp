@@ -18,8 +18,8 @@ SymMat<_Scalar>::SymMat()
 		_Rows =_Cols = 0;
 }
 
-template<typename _Scalar> 
-SymMat<_Scalar>::SymMat(MatrixXd M)
+template<typename _Scalar> template<typename type,int r,int c>
+SymMat<_Scalar>::SymMat(Eigen::Matrix<type,r,c>M)
 	{
 		long long int _Dimension  = M.rows();		//gets the dimension of the Eigen::Matrix ,rows == cols
 		_Rows = _Dimension;

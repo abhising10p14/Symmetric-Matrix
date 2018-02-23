@@ -6,7 +6,7 @@
 #include <eigen3/Eigen/Dense>
 #include <iostream>
 #define  ll long long int 				
-//]#include <Eigen/Dense>
+//#include <Eigen/Dense>
 
 /*********************************************************
 	If error while compiling, comment the line :
@@ -33,7 +33,8 @@ public:
 *************************************************************/
 
 	SymMat();
-	SymMat(Eigen::MatrixXd M);
+	template<typename type,int r,int c>			//You can use any type of Eigen::Matrix
+	SymMat(Eigen::Matrix<type,r,c>M);
 	_Scalar  operator()(ll i,ll j);
 
 /***************************************************************************************
