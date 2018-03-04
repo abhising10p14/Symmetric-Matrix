@@ -28,11 +28,12 @@ The class consists of the following function:
    (ii) SymMat∗Eigen::Matrix
 
 
-**It has been assumed that the user provides anEigen::Matrix from which a symmetric has to be extracted and stored.**
+**It has been assumed that the user provides anEigen::Matrix from which a symmetric matrix has to be extracted and stored.**
 
 This repository consists of the following files:
 -----------------------------------------------------------------------------------------------------------------
 1. A C++ header file Symmetric.h
+
    The Header file consist of a SymMat class whose members have been described in the comments in the file itself.
    The SymMat class consist of the following memebers :
 
@@ -47,9 +48,11 @@ This repository consists of the following files:
    																   Same as the cout<< m ;(where m is a Eigen::Matrix)
 
 2. A C++ source file Symmetric.cpp
+
 	The source file consists of the implementation of all the member function of the class SymMat as well as the operator overloading declared in the class.
 
-3. A test_file.cpp 
+3. A test_file.cpp
+
 	This contains all the required test cases which checks the utility of all the inbuilt functions where both the SymMat and the Eigen::Matrix have been used.
 
 
