@@ -10,7 +10,7 @@ using namespace Eigen;
 
 
 /************************************************************
-				Constructor definition
+			Constructor definition
 *************************************************************/
 
 template<typename _Scalar> 
