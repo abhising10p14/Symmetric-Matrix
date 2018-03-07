@@ -87,6 +87,36 @@ To use this class you just have to include this following in your main program.
 
 
 
+**Current Limitations:**
+
+Currently, very basic algorithms have been implemented for the test evaluation point of purpose.And due to which the time copmlexity of several Operations like multiplication is cubic
+ 
+ But there are lots of  functions as well as a lot of optimization is needed to be made to the Symmetric Matrix operation. 
+Functions like:
+   **.dot()
+   .vector()
+   .mean()
+   .trace()
+   .minCoeff()
+   .maxCoeff()
+   .transpose()
+   .noalias()
+   .Random()
+   Constant()
+   Zero()**
+
+Operations like :
+   **Joining of two Symmetric Matrices together
+     Multithreading in case of large multiplications
+     has to be implemented**
+
+**Currently, I am busy in my semester exams. I have noted down as well planned my approach to all the subproblelms of 
+Implementations as well as Optimizations. Once My exams get over I will start contributing on this project again with full pace.
+Any sort of Advice or Suggestion regarding this project is always welcome**
+
+      
+
+
 
 
 	
