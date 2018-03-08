@@ -55,6 +55,9 @@ This repository consists of the following files:
 
 	This contains all the required test cases which checks the utility of all the inbuilt functions where both the SymMat and the Eigen::Matrix have been used.
 
+4. A checking_the_time.cpp
+
+   This file compares the time taken for performing operations like multiplications of very large sized matrices.
 
 
 How to use this class and compile it?
@@ -91,6 +94,7 @@ To use this class you just have to include this following in your main program.
 
 Currently, very basic algorithms have been implemented for the test evaluation point of purpose.And due to which the time copmlexity of several Operations like multiplication is cubic
  
+The output of the file **checking_the_time.cpp** indicates that currently the multiplication of SymMat class isn't as efficient as the Eigen:: Matrix. So the current need is to use faster Matrix Multiplication methods liked BLASS GEMM, BLIS etc.
  But there are lots of  functions as well as a lot of optimization is needed to be made to the Symmetric Matrix operation. 
 Functions like:
    **.dot()
