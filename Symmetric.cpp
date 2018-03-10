@@ -7,8 +7,8 @@
 #include<iostream>
 using namespace std;
 using namespace Eigen;
-
-
+#include <thread>
+int THREADS_NUMBER = 4;   // number of threads being used
 /************************************************************
 			Constructor definition
 *************************************************************/
@@ -357,78 +357,126 @@ MatrixXd operator *(SymMat<_Scalar> const &ob1,SymMat<_Scalar> const &ob2)
 } // This function ends here 
 
 //2. Product btw SymMat and Eigen::Matrix
+
+//This is the threading part 
 template<typename _Scalar>
-MatrixXd operator *(SymMat<_Scalar> const &ob1,Eigen::MatrixXd &m)
+void multiply_threading(Eigen::MatrixXd &result, const int thread_number,SymMat<_Scalar> const &m1,Eigen::MatrixXd &m2) {
+  // Calculate workload
+  int MATRIX_SIZE = m1._Rows;
+  
+  const int n_elements = (MATRIX_SIZE * MATRIX_SIZE);
+  const int n_operations = n_elements / THREADS_NUMBER;
+  const int rest_operations = n_elements % THREADS_NUMBER;
+
+  int start_op, end_op;
+  ll length = m1._Rows;
+
+  if (thread_number == 0) {
+    // First thread does more job
+    start_op = n_operations * thread_number;
+    end_op = (n_operations * (thread_number + 1)) + rest_operations;
+  }
+  else {
+    start_op = n_operations * thread_number + rest_operations;
+    end_op = (n_operations * (thread_number + 1)) + rest_operations;
+  }
+
+  for (int op = start_op; op < end_op; ++op) {
+    const int row = op % MATRIX_SIZE;
+    const int col = op / MATRIX_SIZE;
+    double r =0;
+    for (int i = 0; i < MATRIX_SIZE; ++i) {
+       double e1;
+      double e2 = m2(i,col);
+      
+      if (row <= i)
+      e1 = m1.symmatrix[(row * length - (row - 1) * row / 2 + i - row)];
+      else
+      e1 = m1.symmatrix[(i * length - (i - 1) * i / 2 + row - i)];
+      r += e1 * e2;
+    }
+
+    result(row,col) = r;
+  }
+}
+
+
+template<typename _Scalar> 
+MatrixXd operator *(SymMat<_Scalar> const &m1,Eigen::MatrixXd &m)
 {
 
-	//Throw Exception if size of SymMat and Eigen::Matrix are not same 
-	try {
-				if(ob1._Rows!=m.rows() || ob1._Rows!=m.cols() || m.cols()!=m.rows()) 
-				{
-					throw ob1._Rows;
-				}
-
-		}
-	catch(ll num) 
-	{
-		cout<<"Exception: "<<endl<<"The given SymMat and Eigen:: Matrix for addition don't have same dimension"<<endl;
-		exit(0);
-		
-	}
-
-	//Throw Exception if size of anyone of  the SymMat or Eigen::Matrix is zero
-	try {
-				if(ob1._Rows==0 || m.rows()==0 || m.cols()==0) 
-				{
-					throw ob1._Rows;
-				}
-
-		}
-	catch(ll num) 
-	{
-		cout<<"Exception: "<<endl<<"Zero sized Matrix found for Addition"<<endl;
-		exit(0);
-		
-	}
-
-	//Throw Exception if data type of both the SymMat are not same 
-	try {
-				if(typeid(m(0,0)).name() != typeid(ob1.symmatrix[0]).name()) 
-				{
-					throw ob1._Rows;
-				}
-
-		}
-	catch(ll num) 
-	{
-		cout<<"Exception: "<<endl<<"Two Matrix of different data types"<<endl;
-		exit(0);
-		
-	}
-
-	ll length = ob1._Rows;
-	MatrixXd result(length,length);
-	for (ll i = 0; i < length; i++)
-    {
-        for (ll j = 0; j < length; j++)
+  //Throw Exception if size of SymMat and Eigen::Matrix are not same 
+  try {
+        if(m1._Rows!=m.rows() || m1._Rows!=m.cols() || m.cols()!=m.rows()) 
         {
-        	result(i,j)=0;
-            for (ll k = 0; k < length; k++)
-            {
-            	_Scalar temp  ;
-            	/*if (i <= k)
-		      	 temp =  m.symmatrix[(i * m._Rows - (i - 1) * i / 2 + j - i)] << " ";
-		  		 else
-		      	 temp =   m.symmatrix[(j * m._Rows - (j - 1) * j / 2 + i - j)] << " ";*/
-				if (i <= k)
-		      	temp = ob1.symmatrix[(i * length - (i - 1) * i / 2 + k - i)];
-		  		else
-		      	temp = ob1.symmatrix[(k * length - (k - 1) * k / 2 + i - k)];
-
-                result(i,j) += temp*m(k,j);
-            }
+          throw m1._Rows;
         }
+
     }
-	return result;
-}// This function ends here 
+  catch(ll num) 
+  {
+    cout<<"Exception: "<<endl<<"The given SymMat and Eigen:: Matrix for addition don't have same dimension"<<endl;
+    exit(0);
+    
+  }
+
+  //Throw Exception if size of anyone of  the SymMat or Eigen::Matrix is zero
+  try {
+        if(m1._Rows==0 || m.rows()==0 || m.cols()==0) 
+        {
+          throw m1._Rows;
+        }
+
+    }
+  catch(ll num) 
+  {
+    cout<<"Exception: "<<endl<<"Zero sized Matrix found for Addition"<<endl;
+    exit(0);
+    
+  }
+
+  //Throw Exception if data type of both the SymMat are not same 
+  try {
+        if(typeid(m(0,0)).name() != typeid(m1.symmatrix[0]).name()) 
+        {
+          throw m1._Rows;
+        }
+
+    }
+  catch(ll num) 
+  {
+    cout<<"Exception: "<<endl<<"Two Matrix of different data types"<<endl;
+    exit(0);
+    
+  }
+
+  ll length = m1._Rows;
+  MatrixXd result(length,length);
+ 
+    // Create an array of threads
+  std::thread threads[THREADS_NUMBER];
+
+  for (int i = 0; i < THREADS_NUMBER; ++i) {
+    // Initialize each thread with the function responsible of multiplying only a part of the matrices
+    
+    threads[i] = std::thread(&multiply_threading<_Scalar>, std::ref(result), i, std::ref(m1), std::ref(m));
+  }
+
+  for (int i = 0; i < THREADS_NUMBER; ++i) {
+    // Wait until each thead has finished
+    threads[i].join();
+  }
+
+  return result;
+}
+
+
+
+
+
+
+
+
+
+
 
