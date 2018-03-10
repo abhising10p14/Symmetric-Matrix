@@ -73,6 +73,7 @@ _Scalar  SymMat<_Scalar>::operator()(ll i,ll j)
 template<typename _Scalar>
 inline std::ostream &operator <<( std::ostream &out,  const SymMat<_Scalar> & m){
 		 
+		 cout<<"\n";
 		 for(ll i=0;i<m._Rows;i++)
 		  {
 		  	for (ll j=0;j<m._Cols;j++)
@@ -336,18 +337,19 @@ MatrixXd operator *(SymMat<_Scalar> const &ob1,SymMat<_Scalar> const &ob2)
             result(i,j) = 0;
             for (ll k = 0; k < length; k++)
             {
-            	_Scalar temp1,temp2  ;
-				if (i <= k)
-		      	temp1 = ob1.symmatrix[(i * length - (i - 1) * i / 2 + j - i)];
-		  		if(i>k)
-		      	temp1 = ob1.symmatrix[(j * length - (j - 1) * j / 2 + i - j)];
+            		//resut[i][j] += a[i][k] * b[k][j];
+	            	_Scalar temp1,temp2  ;
+					if (i <= k)
+			      	temp1 = ob1.symmatrix[(i * length - (i - 1) * i / 2 + k - i)];
+			  		if(i>k)
+			      	temp1 = ob1.symmatrix[(k * length - (k - 1) * k / 2 + i - k)];
+			      
+			      	if (k <= j)
+			      	temp2 = ob2.symmatrix[(k * length - (k - 1) * k / 2 + j - k)];
+			  		if(k>j)
+			      	temp2 = ob2.symmatrix[(j * length - (j - 1) * j / 2 + k - j)];
 
-		      	if (k <= j)
-		      	temp2 = ob1.symmatrix[(i * length - (i - 1) * i / 2 + j - i)];
-		  		if(k>j)
-		      	temp2 = ob1.symmatrix[(j * length - (j - 1) * j / 2 + i - j)];
-
-                result(i,j) += temp1*temp2;
+	                result(i,j) += temp1*temp2;
             }
         }
     }
@@ -405,19 +407,23 @@ MatrixXd operator *(SymMat<_Scalar> const &ob1,Eigen::MatrixXd &m)
 	}
 
 	ll length = ob1._Rows;
-	MatrixXd result = m;
+	MatrixXd result(length,length);
 	for (ll i = 0; i < length; i++)
     {
         for (ll j = 0; j < length; j++)
         {
-            result(i,j) = 0;
+        	result(i,j)=0;
             for (ll k = 0; k < length; k++)
             {
             	_Scalar temp  ;
+            	/*if (i <= k)
+		      	 temp =  m.symmatrix[(i * m._Rows - (i - 1) * i / 2 + j - i)] << " ";
+		  		 else
+		      	 temp =   m.symmatrix[(j * m._Rows - (j - 1) * j / 2 + i - j)] << " ";*/
 				if (i <= k)
-		      	temp = ob1.symmatrix[(i * length - (i - 1) * i / 2 + j - i)];
-		  		if(i>k)
-		      	temp = ob1.symmatrix[(j * length - (j - 1) * j / 2 + i - j)];
+		      	temp = ob1.symmatrix[(i * length - (i - 1) * i / 2 + k - i)];
+		  		else
+		      	temp = ob1.symmatrix[(k * length - (k - 1) * k / 2 + i - k)];
 
                 result(i,j) += temp*m(k,j);
             }
