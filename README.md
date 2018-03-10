@@ -10,6 +10,7 @@ Suppose there is Symmetric Square Matrix of size 10^19 by 10^19. And let's assum
 in it. As a single double value is of 8 bytes, total amount of memory used if we store all the elements of this matrix is 8x10^38 bytes which is =~ 6.4 × 10^27 Tb and on and on .................
 So, It can be seen that around 3.2 × 10^27 Tb of memory will be saved if we  save the space by just storing the upper or lower triangular part of a Symmetric Matrix and could perform all the basic Matrix arithmetic easily.
 
+ 
 
 How it is being implemented?
 ----------------------------------------------------------------------------------------------------------------
@@ -67,6 +68,9 @@ To use this class you just have to include this following in your main program.
    
    #include"Symmetric.cpp"
 
+And then to run/compile a file type :
+**```g++ -std=c++11 -pthread file_name.cpp```**
+
    To create an object of the SymMat class 
    SymMat<_Scalar> s2(m);
    
@@ -118,6 +122,12 @@ Operations like :
 **Currently, I am busy in my semester exams. I have noted down as well planned my approach to all the subproblelms of 
 Implementations as well as Optimizations. Once My exams get over I will start contributing on this project again with full pace.
 Any sort of Advice or Suggestion regarding this project is always welcome**
+
+**Update 1:  
+I have updated the multiplication function of SymMat with a Eigen::Matrix. I have used multithreading this time to reduce the time required for multiplication of larger metrices.
+Earlier,  to multiply one SymMat with an Eigen:: Matrix of size 100 by 100, time taken was 317.748 milliseconds
+And now, After using four threads for the same purpose, it takes 232.278 millisecond i.e a decrease in initial time by 27%.
+ I am looking for more better methods than the current method**
 
       
 
