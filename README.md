@@ -129,6 +129,11 @@ Earlier,  to multiply one SymMat with an Eigen:: Matrix of size 100 by 100, time
 And now, After using four threads for the same purpose, it takes 232.278 millisecond i.e a decrease in initial time by 27%.
  I am looking for more better methods than the current method**
 
+
+ MY current approach is to use the CBLASS and the LAPACK for matrix operation.
+
+
+
       
 
 
