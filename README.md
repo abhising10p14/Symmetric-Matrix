@@ -102,36 +102,36 @@ The output of the file **checking_the_time.cpp** indicates that currently the mu
 
  But there are lots of  functions as well as a lot of optimization is needed to be made to the Symmetric Matrix operation. 
 Functions like:
-   **.dot()
-   .vector()
-   .mean()
-   .trace()
-   .minCoeff()
-   .maxCoeff()
-   .transpose()
-   .noalias()
-   .Random()
-   Constant()
-   Zero()**
+
+      **.dot()
+      .vector()
+      .mean()
+      .trace()
+      .minCoeff()
+      .maxCoeff()
+      .transpose()
+      .noalias()
+      .Random()
+      Constant()
+      Zero()**
 
 Operations like :
-   **Joining of two Symmetric Matrices together
+   
+     Joining of two Symmetric Matrices together**
      Multithreading in case of large multiplications
-     has to be implemented**
+     has to be implemented
 
-**Currently, I am busy in my semester exams. I have noted down as well planned my approach to all the subproblelms of 
-Implementations as well as Optimizations. Once My exams get over I will start contributing on this project again with full pace.
-Any sort of Advice or Suggestion regarding this project is always welcome**
+
 
 **Update 1:  
 I have updated the multiplication function of SymMat with a Eigen::Matrix. I have used multithreading this time to reduce the time required for multiplication of larger metrices.
 Earlier,  to multiply one SymMat with an Eigen:: Matrix of size 100 by 100, time taken was 317.748 milliseconds
 And now, After using four threads for the same purpose, it takes 232.278 millisecond i.e a decrease in initial time by 27%.
- I am looking for more better methods than the current method**
+ I am looking for more better methods than the current method. My current approach is to use the CBLASS and the LAPACK for matrix operation.**
 
 
- MY current approach is to use the CBLASS and the LAPACK for matrix operation.
 
+**Any sort of Advice or Suggestion regarding this project is always welcome**
 
 
       
