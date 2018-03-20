@@ -70,22 +70,22 @@ This repository consists of the following folders:
 4. multi_threading : This explains how the multithreading has been implemented.
 
 5. build : 
-
+      
           This is an empty directory which uses the file CMakeLists.txt to build a static library which can be used by other 
           users. To build this library perform the following steps.
           
 
-          **Make sure you have CMake installed on your system. If not then just paste the following command in the cmd:**
+          Make sure you have CMake installed on your system. If not then just paste the following command in the cmd:**
             
             sudo apt-get install cmake
             This will install Cmake on your system.
 
             After this go to this directory and do the following steps to build this library on your system:
 
-            **cd build
+            cd build
             cmake ..
             make
-            sudo make install**
+            sudo make install
 
             You are ready to use this library by just including "Symmetric.cpp" in your program.
           
