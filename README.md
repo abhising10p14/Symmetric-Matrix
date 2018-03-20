@@ -34,9 +34,11 @@ The class consists of the following function:
 
 **It has been assumed that the user provides anEigen::Matrix from which a symmetric matrix has to be extracted and stored.**
 
-This repository consists of the following files:
+This repository consists of the following folders:
 -----------------------------------------------------------------------------------------------------------------
-1. A C++ header file Symmetric.h
+1. src :  It consists of the header file Symmetric.h and the source file  Symmetric.cpp:
+
+   i) C++ header file Symmetric.h
 
    The Header file consist of a SymMat class whose members have been described in the comments in the file itself.
    The SymMat class consist of the following memebers :
@@ -50,19 +52,41 @@ This repository consists of the following files:
    6. **```_Scalar  operator()(ll i,ll j)```**			 The S(i,j) operator
    7. **```operator <<(ostream &out, const SymMat<Y> & m)```**  '<<' Operator overloading for output of the matrix 
    																   Same as the cout<< m ;(where m is a Eigen::Matrix)
+   8. **Other operator overloadings like =,-,+,* etc**
 
-2. A C++ source file Symmetric.cpp
+   ii) A C++ source file Symmetric.cpp
 
 	The source file consists of the implementation of all the member function of the class SymMat as well as the operator overloading declared in the class.
 
-3. A test_file.cpp
+2. test: It consists of the unit test file test_file.cpp
 
-	This contains all the required test cases which checks the utility of all the inbuilt functions where both the SymMat and the Eigen::Matrix have been used.
+	This test file contains all the required test cases which checks the utility of all the inbuilt functions where both the SymMat and the Eigen::Matrix have been used.
 
-4. A checking_the_time.cpp
+3. plot :
 
-   This file compares the time taken for performing operations like multiplications of very large sized matrices.
+          This folder contains the files checking_the_time.cpp,data_of_time,plot_1&2.py
+          These files have been used to compare the speed of multithreading with 4 threads  with the speed of Eigen::Matrix functions. The file checking_the_time.cpp compares the time taken for performing operations like multiplications of very large sized matrices. The results have been saved as .png files.
+   
+4. multi_threading : This explains how the multithreading has been implemented.
 
+5. build : 
+
+          This is an empty directory which uses the file CMakeLists.txt to build a static library which can be used by other 
+          users. To build this library perform the following steps.
+          **Make sure you have CMake installed on your system. If not then just paste the following command in the cmd:**
+            
+            **sudo apt-get install cmake**
+            This will install Cmake on your system.
+
+            After this go to this directory and do the following steps to build this library on your system:
+
+            **cd build**
+            **cmake ..**
+            **make**
+            **sudo make install**
+
+            You are ready to use this library by just including "Symmetric.cpp" in your program.
+          
 
 How to use this class and compile it?
 --------------------------------------------------------------------------------------------------------------------
@@ -106,7 +130,7 @@ The output of the file **checking_the_time.cpp** indicates that currently the mu
  But there are lots of  functions as well as a lot of optimization is needed to be made to the Symmetric Matrix operation. 
 Functions like:
 
-      **.dot()
+      .dot()
       .vector()
       .mean()
       .trace()
@@ -116,11 +140,11 @@ Functions like:
       .noalias()
       .Random()
       Constant()
-      Zero()**
+      Zero()
 
 Operations like :
    
-     Joining of two Symmetric Matrices together**
+     Joining of two Symmetric Matrices together
      Multithreading in case of large multiplications
      has to be implemented
 
