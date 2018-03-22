@@ -99,7 +99,7 @@ To use this class you just have to include this following in your main program.
    #include"Symmetric.cpp"
 
 And then to run/compile a file type :
-**```g++ -std=c++11 -pthread file_name.cpp```**
+**```g++  file_name.cpp```**
 
    To create an object of the SymMat class 
    SymMat<_Scalar> s2(m);
