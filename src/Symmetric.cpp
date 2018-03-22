@@ -6,7 +6,9 @@
 #include"Symmetric.h"
 #include<iostream>
 using namespace Eigen;
+#if __cplusplus >= 201103L || (defined(_MSC_VER) && _MSC_VER >= 1900)
 #include <thread>
+#endif
 int THREADS_NUMBER = 4;   // number of threads being used
 /************************************************************
 			Constructor definition
@@ -368,7 +370,9 @@ Eigen:: MatrixXd SymMat<_Scalar>:: operator *(SymMat<_Scalar> const &ob2)
 
 //2. Product btw SymMat and Eigen::Matrix
 
-//This is the threading part 
+//This is the threading part
+#if __cplusplus >= 201103L || (defined(_MSC_VER) && _MSC_VER >= 1900)	//compiles only if c++ is supported 
+
 template<typename _Scalar>
 void  multiply_threading(SymMat<_Scalar> const &m1,Eigen::MatrixXd &result, const int thread_number,Eigen::MatrixXd &m2) {
   // Calculate workload
@@ -410,8 +414,11 @@ void  multiply_threading(SymMat<_Scalar> const &m1,Eigen::MatrixXd &result, cons
   }
 }
 
+#endif // ends the compiler check
 
 
+
+#if __cplusplus >= 201103L || (defined(_MSC_VER) && _MSC_VER >= 1900)	//compiled only if c++11 is supported
 
 template<typename _Scalar> 
 Eigen:: MatrixXd SymMat<_Scalar>:: operator *(Eigen::MatrixXd &m)
@@ -442,7 +449,7 @@ Eigen:: MatrixXd SymMat<_Scalar>:: operator *(Eigen::MatrixXd &m)
     }
   catch(ll num) 
   {
-    std::cout<<"Exception: "<<"\n"<<"Zero sized Matrix found for Addition"<<"\n";
+    std::cout<<"Exception: "<<"\n"<<"Zero sized Matrix found for Multplication"<<"\n";
     exit(0);
     
   }
@@ -465,19 +472,124 @@ Eigen:: MatrixXd SymMat<_Scalar>:: operator *(Eigen::MatrixXd &m)
   ll length = this->_Rows;
   MatrixXd result(length,length);
  
-    // Create an array of threads
-  std::thread threads[THREADS_NUMBER];
+  if(length>=50)		//runs the threading part only if the size of matrices are higher than 50
+  {
+  	 // Create an array of threads
+	  std::thread threads[THREADS_NUMBER];
 
-  for (int i = 0; i < THREADS_NUMBER; ++i) {
-    // Initialize each thread with the function responsible of multiplying only a part of the matrices
-    
-    threads[i] = std::thread(&multiply_threading <_Scalar>,std::ref(*this), std::ref(result), i, std::ref(m));
+	  for (int i = 0; i < THREADS_NUMBER; ++i) {
+	    // Initialize each thread with the function responsible of multiplying only a part of the matrices
+	    
+	    threads[i] = std::thread(&multiply_threading <_Scalar>,std::ref(*this), std::ref(result), i, std::ref(m));
+	  }
+
+	  for (int i = 0; i < THREADS_NUMBER; ++i) {
+	    // Wait until each thead has finished
+	    threads[i].join();
+	  }
+
+	  return result;
   }
+  else
+  {
+  	Eigen::MatrixXd result(length,length);
+	for (ll i = 0; i < length; i++)
+    {
+        for (ll j = 0; j < length; j++)
+        {
+        	result(i,j)=0;
+            for (ll k = 0; k < length; k++)
+            {
+            	_Scalar temp  ;
+            	
+				if (i <= k)
+		      	temp = this->symmatrix[(i * length - (i - 1) * i / 2 + k - i)];
+		  		else
+		      	temp = this->symmatrix[(k * length - (k - 1) * k / 2 + i - k)];
 
-  for (int i = 0; i < THREADS_NUMBER; ++i) {
-    // Wait until each thead has finished
-    threads[i].join();
+                result(i,j) += temp*m(k,j);
+            }
+        }
+    }
+	return result;
   }
-
-  return result;
+   
 }
+
+#else 	// compiles if c++11 is not supported 
+template<typename _Scalar>
+Eigen:: MatrixXd SymMat<_Scalar>:: operator *(Eigen::MatrixXd &m)
+{
+
+	//Throw Exception if size of SymMat and Eigen::Matrix are not same 
+	try {
+				if(this->_Rows!=m.rows() || this->_Rows!=m.cols() || m.cols()!=m.rows()) 
+				{
+					throw this->_Rows;
+				}
+
+		}
+	catch(ll num) 
+	{
+		std::cout<<"Exception: "<<std::endl<<"The given SymMat and Eigen:: Matrix for addition don't have same dimension"<<std::endl;
+		exit(0);
+		
+	}
+
+	//Throw Exception if size of anyone of  the SymMat or Eigen::Matrix is zero
+	try {
+				if(this->_Rows==0 || m.rows()==0 || m.cols()==0) 
+				{
+					throw this->_Rows;
+				}
+
+		}
+	catch(ll num) 
+	{
+		std::cout<<"Exception: "<<std::endl<<"Zero sized Matrix found for Multplication"<<std::endl;
+		exit(0);
+		
+	}
+
+	//Throw Exception if data type of both the SymMat are not same 
+	try {
+				if(typeid(m(0,0)).name() != typeid(this->symmatrix[0]).name()) 
+				{
+					throw this->_Rows;
+				}
+
+		}
+	catch(ll num) 
+	{
+		std::cout<<"Exception: "<<std::endl<<"Two Matrix of different data types"<<std::endl;
+		exit(0);
+		
+	}
+
+	ll length = this->_Rows;
+	Eigen::MatrixXd result(length,length);
+	for (ll i = 0; i < length; i++)
+    {
+        for (ll j = 0; j < length; j++)
+        {
+        	result(i,j)=0;
+            for (ll k = 0; k < length; k++)
+            {
+            	_Scalar temp  ;
+            	/*if (i <= k)
+		      	 temp =  m.symmatrix[(i * m._Rows - (i - 1) * i / 2 + j - i)] << " ";
+		  		 else
+		      	 temp =   m.symmatrix[(j * m._Rows - (j - 1) * j / 2 + i - j)] << " ";*/
+				if (i <= k)
+		      	temp = this->symmatrix[(i * length - (i - 1) * i / 2 + k - i)];
+		  		else
+		      	temp = this->symmatrix[(k * length - (k - 1) * k / 2 + i - k)];
+
+                result(i,j) += temp*m(k,j);
+            }
+        }
+    }
+	return result;
+}// This function ends here
+
+#endif

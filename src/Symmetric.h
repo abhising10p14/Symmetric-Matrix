@@ -41,7 +41,7 @@ public:
 		2. Equalization
 		3. Addition 
 		4. Substraction
-		5. Multplication
+		5. Multiplication
 		6. accesing the SymMat by just object name , i.e cout<<obj;
 	****************************************************************************************/
 	_Scalar  operator()(ll i,ll j);
