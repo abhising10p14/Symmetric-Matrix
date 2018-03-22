@@ -57,7 +57,8 @@ This repository consists of the following folders:
    ii) A C++ source file Symmetric.cpp
 
 	The source file consists of the implementation of all the member function of the class SymMat as well as the operator overloading declared in the class.
-
+    There is one important thing to note in the source file that for the multiplication of SymMat with Eigen::Matrix, two methods have been used. If the size of the matrices is >=50(this benchmark can be changed) and the code compiles under c++11, the multiplication happens using 4 threads. If the size if the matrices is less than 50, or if the code doesn't cmpiles under c++11 but under c++98, then the basic method for multiplication runs.
+    This has been done because that the multithreading option is requiured only if the size of the matrices are large. For smaller matrices, single thread works fine. This can be seen in the plot provided.
 2. test: It consists of the unit test file test_file.cpp
 
 	This test file contains all the required test cases which checks the utility of all the inbuilt functions where both the SymMat and the Eigen::Matrix have been used.
