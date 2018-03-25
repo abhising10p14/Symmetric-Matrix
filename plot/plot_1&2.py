@@ -6,7 +6,7 @@ x_axis = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,2
 plt.plot(x_axis,eigen_create,label = "Eigen")
 plt.plot(x_axis,symmat_create,label = "SymMatrix")
 plt.ylabel('time taken (ms)')
-plt.title('Creation of Matrix')
+plt.title('Creation of Matrix(100*100)')
 plt.legend()
 plt.show()
 
@@ -15,6 +15,28 @@ sym_sym_multiply = [227.821,231.48,239.927,239.722,223.967,226.827,221.614,228.6
 plt.plot(x_axis,eigen_eigen_multiply,label = 'Eigen*Eigen')
 plt.plot(x_axis,sym_sym_multiply,label = 'SymMat*Eigen')
 plt.ylabel('time taken (ms)')
-plt.title('Multiplication')
+plt.title('Multiplication(100*100)')
+plt.legend()
+plt.show()
+
+
+# Checking for the sizes <50;
+eigen_create = [0.006,0.001,0.001,0.001,0.002,0.001,0.001,0.001,0.002,0.002,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.002,0.001,0.001,0.002,0.002,0.001,0.002,0.001,0.001,0.002,0.002,0.001,0.002,0.002,0.001,0.002,0.002,0.002,0.001,0.001,0.002,0.001]
+symmat_create = [0.016,0.006,0.006,0.006,0.008,0.008,0.007,0.008,0.008,0.008,0.008,0.008,0.008,0.008,0.008,0.008,0.008,0.008,0.008,0.009,0.008,0.008,0.008,0.009,0.008,0.008,0.008,0.008,0.008,0.008,0.008,0.008,0.008,0.008,0.008,0.008,0.009,0.009,0.008,0.008]
+x_axis = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40]
+plt.plot(x_axis,eigen_create,label = "Eigen")
+plt.plot(x_axis,symmat_create,label = "SymMatrix")
+plt.ylabel('time taken (ms)')
+plt.title('Creation of Matrix(4 * 4)')
+plt.legend()
+plt.show()
+
+eigen_eigen_multiply = [0.009,0.004,0.004,0.004,0.005,0.004,0.004,0.006,0.007,0.007,0.006,0.005,0.006,0.006,0.006,0.006,0.007,0.007,0.006,0.006,0.006,0.006,0.007,0.006,0.007,0.006,0.007,0.006,0.007,0.006,0.006,0.007,0.006,0.007,0.006,0.007,0.006,0.006,0.007,0.006]
+sym_sym_multiply = [0.032,0.03,0.03,0.03,0.033,0.032,0.032,0.028,0.027,0.027,0.065,0.031,0.029,0.028,0.028,.028,0.028,0.028,0.028,0.028,0.028,0.027,0.027,0.028,0.028,0.028,0.053,0.029,0.027,0.077,0.029,0.028,0.028,0.027,0.028,0.027,0.028,0.028,0.027,0.028]
+x_axis = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40]
+plt.plot(x_axis,eigen_eigen_multiply,label = 'Eigen*Eigen')
+plt.plot(x_axis,sym_sym_multiply,label = 'SymMat*Eigen')
+plt.ylabel('time taken (ms)')
+plt.title('Multiplication(4*4)')
 plt.legend()
 plt.show()
