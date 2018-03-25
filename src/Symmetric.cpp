@@ -593,3 +593,39 @@ Eigen:: MatrixXd SymMat<_Scalar>:: operator *(Eigen::MatrixXd &m)
 }// This function ends here
 
 #endif
+
+
+/************************************************************************************************************
+
+	Different views of the Matrix :
+	1. transpose()
+*************************************************************************************************************/
+template<typename _Scalar>
+SymMat<_Scalar> SymMat<_Scalar>::transpose()
+{
+	std::cout<<*this;
+	return *this;
+}
+
+template<typename _Scalar>
+SymMat<_Scalar> SymMat<_Scalar>::transposeInPlace()
+{
+	std::cout<<*this;
+	return *this;
+}
+
+template<typename _Scalar>
+_Scalar SymMat<_Scalar>::trace()
+{
+	_Scalar sum =0;
+	int check = this->_Rows;
+	int next =0;
+
+	while(next<(this->symmatrix).size())
+	{
+		sum = sum + (this->symmatrix[next]);
+		next = next + check;
+		check = check - 1;
+	}
+	return sum;
+}

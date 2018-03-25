@@ -55,6 +55,17 @@ public:
     template<class Y>
 	friend std::ostream & operator <<( std::ostream& out, const SymMat<Y> & m);
 
+	/***************************************************************************************
+
+		different views of the matrix:
+		1.) transpose()
+		2.) transposeInPlace()
+		3.) trace()
+
+	***************************************************************************************/
+	SymMat<_Scalar> transpose();
+	SymMat<_Scalar> transposeInPlace();
+	_Scalar trace();
 };
 
 
