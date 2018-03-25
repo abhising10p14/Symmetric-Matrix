@@ -75,6 +75,23 @@ int main()
 
    Eigen:: MatrixXd m6 = s3*s;                                   //SymMat * Eigen::Eigen:: Matrix
    std::cout<<"m6 = s3*s :"<<"\n"<<m6<<"\n"<<"\n";       
+
+
+   /*****************************************
+    testing for:
+    1.transopse()
+    2.transposeInPlace()
+
+   ******************************************/
+   std::cout<<"s3 : \n"<<s3<<"\n s3': \n"<<s3.transpose();
+   std::cout<<"\n"<<"s3' inplace : \n"<<s3.transposeInPlace();
+
+   /*****************************************
+    testing for the:
+    trace();
+
+   ******************************************/
+   std::cout<<"trace: \n"<<s3.trace()<<"\n";
 }
 
 
