@@ -43,25 +43,25 @@ This repository consists of the following folders:
    The Header file consist of a SymMat class whose members have been described in the comments in the file itself.
    The SymMat class consist of the following memebers :
 
-   1. **```_Rows```**								     The Number of Rows
-   2. **```_Cols```**									 The Number of Columns which is same as number of rows
-   3. **```std::vector  Scalar symmatrix```**			 To store the upper Diagonal only. It reduces  the storage
-   4. **```SymMat()```**							     Default Constructor
-   5. **```SymMat(Eigen::Matrix<type,r,c>M)```**  		 Parameterized Constructors , type is the data type of
-   														 Eigen::Matrix
-   6. **```_Scalar  operator()(ll i,ll j)```**			 The S(i,j) operator
+   1. **```_Rows```**                    The Number of Rows
+   2. **```_Cols```**                  The Number of Columns which is same as number of rows
+   3. **```std::vector  Scalar symmatrix```**      To store the upper Diagonal only. It reduces  the storage
+   4. **```SymMat()```**                   Default Constructor
+   5. **```SymMat(Eigen::Matrix<type,r,c>M)```**       Parameterized Constructors , type is the data type of
+                               Eigen::Matrix
+   6. **```_Scalar  operator()(ll i,ll j)```**       The S(i,j) operator
    7. **```operator <<(ostream &out, const SymMat<Y> & m)```**  '<<' Operator overloading for output of the matrix 
-   																   Same as the cout<< m ;(where m is a Eigen::Matrix)
+                                     Same as the cout<< m ;(where m is a Eigen::Matrix)
    8. **Other operator overloadings like =,-,+,* etc**
 
    ii) A C++ source file Symmetric.cpp
 
-	The source file consists of the implementation of all the member function of the class SymMat as well as the operator overloading declared in the class.
+  The source file consists of the implementation of all the member function of the class SymMat as well as the operator overloading declared in the class.
     There is one important thing to note in the source file that for the multiplication of SymMat with Eigen::Matrix, two methods have been used. If the size of the matrices is >=50(this benchmark can be changed) and the code compiles under c++11, the multiplication happens using 4 threads. If the size if the matrices is less than 50, or if the code doesn't cmpiles under c++11 but under c++98, then the basic method for multiplication runs.
     This has been done because that the multithreading option is requiured only if the size of the matrices are large. For smaller matrices, single thread works fine. This can be seen in the plot provided.
 2. test: It consists of the unit test file test_file.cpp
 
-	This test file contains all the required test cases which checks the utility of all the inbuilt functions where both the SymMat and the Eigen::Matrix have been used.
+  This test file contains all the required test cases which checks the utility of all the inbuilt functions where both the SymMat and the Eigen::Matrix have been used.
 
 3. plot :
 
@@ -105,22 +105,22 @@ And then to run/compile a file type :
    SymMat<_Scalar> s2(m);
    
    Here, _Scalar can be any datatype supported in the C++
-   	     m is the Eigen::matrix which is  provided by the user and from which Symmetric  matrix has to be extracted.
-   	 e.g
+         m is the Eigen::matrix which is  provided by the user and from which Symmetric  matrix has to be extracted.
+     e.g
 
-   	 	Eigen::MatrixXd m(4,4);
-   	 	SymMat<double> s(m);
-   	 		
+      Eigen::MatrixXd m(4,4);
+      SymMat<double> s(m);
+        
 **You can pass any type of Eigen::Matrix as argument to the SymMat constructor**
 
 
 
  
 **If fatal error:Eigen/Dense: No such file or directory
-	occurs  while compiling, then comment the line:
-	#include <eigen3/Eigen/Dense>  
-	and	remove the comment from:
-	#include <Eigen/Dense> from the file Symmetric.h**
+  occurs  while compiling, then comment the line:
+  #include <eigen3/Eigen/Dense>  
+  and remove the comment from:
+  #include <Eigen/Dense> from the file Symmetric.h**
 
 
 
@@ -161,6 +161,9 @@ And now, After using four threads for the same purpose, it takes 232.278 millise
 
 
 
+# Turns out that my proposal hasn't been selected in the Gsoc 2018. Though I feel demotivated and sad as I put a lot of hard work and hope in this, but on the other hand I feel happy as I learnt a lot from it. The markdown language, ways to write a good project proposal, how to talk to the mentors, multithreading and a lot more. I learnt that just writing a simple logic in your code isn't coding actually. You have to check and work on other constraints too.
+
+
 **Any sort of Advice or Suggestion regarding this project is always welcome**
 
 
@@ -169,5 +172,5 @@ And now, After using four threads for the same purpose, it takes 232.278 millise
 
 
 
-	
+  
 
